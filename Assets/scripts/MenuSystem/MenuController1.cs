@@ -54,15 +54,15 @@ public class MenuController1 : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        inputActions.UI.Enable(); // 启用UI Action Map
-    }
+    //void OnEnable()
+    //{
+    //    inputActions.UI.Enable(); // 启用UI Action Map
+    //}
 
-    void OnDisable()
-    {
-        inputActions.UI.Disable(); // 禁用UI Action Map
-    }
+    //void OnDisable()
+    //{
+    //    inputActions.UI.Disable(); // 禁用UI Action Map
+    //}
 
     public void ToggleDetail()
     {

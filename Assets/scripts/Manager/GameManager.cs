@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1; // 确保时间缩放比例为 1
-        InitializeCards(); // 初始化卡牌
+        //InitializeCards(); // 初始化卡牌
     }
 
     public void StartAutoAttack()

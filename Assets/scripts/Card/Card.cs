@@ -1,16 +1,24 @@
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 [System.Serializable]
 public class Card : MonoBehaviour,IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [Header("卡牌属性")]
     public CardDataSO cardDataSO; // 卡牌数据
-    public string cardName; // 卡牌名称
     public int damage;      // 伤害值
-    public Sprite cardSprite; // 卡牌图片
+
+
+    [Header("组件")]
+    public SpriteRenderer cardSprite;
+    public TextMeshPro costText;
+    public TextMeshPro descriptionText;
+    public TextMeshPro typeText;
+    public TextMeshPro cardName;
     public CharacterBase owner; // 卡牌拥有者
 
     [Header("拖拽箭头")]
@@ -25,6 +33,14 @@ public class Card : MonoBehaviour,IDragHandler, IBeginDragHandler, IEndDragHandl
     public List<CharacterBase> targets;
     public CharacterBase target;
 
+
+    [Header("卡牌的位置&上提动画")]
+    // 卡牌原始位置——鼠标选中时，卡牌会上移，所以需要记录原始位置
+    public Vector3 originalPosition;
+    public Quaternion originalRotation;
+    public int originalLayerOrder;// 卡牌原始层级
+    public bool isAnimating;//是否正在移动中/抽卡的动画中——若是在移动就不能让它有上移效果
+    public bool isAvailiable;//判断player的当前能量是否足够使用这张卡
 
 
     public string id; // 对应Excel中的卡牌ID
@@ -81,6 +97,7 @@ public class Card : MonoBehaviour,IDragHandler, IBeginDragHandler, IEndDragHandl
     public void OnBeginDrag(PointerEventData eventData)
     {
         //TOOD：能量是否足够释放卡牌
+        Debug.Log("可以拖拽");
 
         switch (cardDataSO.cardType)
         {
@@ -226,5 +243,20 @@ public class Card : MonoBehaviour,IDragHandler, IBeginDragHandler, IEndDragHandl
         //    }
         //}
     }
+
+    public void UpdatePositionRotation(Vector3 position, Quaternion rotation)
+    {
+        this.originalPosition = position;
+        this.originalRotation = rotation;
+        this.originalLayerOrder = GetComponent<SortingGroup>().sortingOrder;
+    }
+
+    //更新卡牌状态颜色标识玩家的能量是否够用——判断是否能使用
+    public void UpdateCardState()
+    {
+        isAvailiable = cardDataSO.cost <= owner.currentMP;
+        costText.color = isAvailiable ? Color.green : Color.red;
+    }
+
 }
 

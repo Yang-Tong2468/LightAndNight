@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6695a037acced80499b227543947beb0, type: 3}
   m_Name: 10001
   m_EditorClassIdentifier: 
-  itemName: 
-  itemID: 0
-  itemIcon: {fileID: 0}
-  itemType: 1
-  itemDescription: 
+  itemName: "\u653B\u51FB1"
+  itemID: 10001
+  itemIcon: {fileID: 21300000, guid: 513882470557cef41922eb8a9002562a, type: 3}
+  itemType: 2
+  itemDescription: "\u5BF9\u76EE\u6807\u9020\u6210\u653B\u51FB"
   cost: 1
-  cardType: 0
+  cardType: 2
   effects:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: fb9f32c96d5321d49922f6db380fcc20, type: 2}
+  statusEffects: []

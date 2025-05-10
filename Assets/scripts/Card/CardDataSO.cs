@@ -10,6 +10,7 @@ public class CardDataSO : Item
 
     //执行的实际效果
     public List<Effect> effects;
+    public List<StatusEffect> statusEffects;
 
     public void Initialize(string name, Sprite image, int cost, CardType type, string description, List<Effect> effects, List<StatusEffect> statusEffects)
     {

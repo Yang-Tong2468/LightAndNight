@@ -65,7 +65,7 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     public void Initialize(Card cardData)
     {
         card = cardData;
-        cardImage.sprite = card.cardSprite;
+        cardImage.sprite = card.cardSprite.sprite;
         originalScale = transform.localScale; // 记录原始缩放比例
     }
 
